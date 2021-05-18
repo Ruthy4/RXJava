@@ -17,19 +17,21 @@ class MainActivity : AppCompatActivity() {
 
 
         /**
-         * @param Flowable a type of emmiter. it is the data to be observed. it handles many streams of data coming in by discarding the unnecesary ones
+         * @param Flowable a type of emitter. it is the data to be observed. it handles many streams of data coming in by discarding the unnecesary ones
          * @param subscribeOn emits the data from the emitter on the background thread
          * @param observeOn sends the result to the main thread
          * @param subscribe listens for the result and prints it
+         * @param disposables an instance of the Composite disposable class that removes memory and threads used by an observable
          */
 
-         val flowable = Flowable.just("Apples", "Oranges", "Pear")
+         val flowable = Flowable.just("Ruth", "Paul", "Mary", "Usman")
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe { value -> println(value) }
 
-        Log.d("Output", "onCreate: $flowable")
         disposables.add(flowable)
+
+
     }
 }
 
